@@ -16,7 +16,11 @@ let main argv =
 
     let history = game randomizer size bots |> Seq.toList
 
-    history |> render size
+    let draw = async {
+        do history |> render size
+    }
+
+    Async.Start(draw)
 
     Console.ReadKey() |> ignore
 
