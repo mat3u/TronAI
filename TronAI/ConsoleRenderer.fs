@@ -30,3 +30,10 @@ let render (w, h) worlds =
     )
 
     worlds |> Seq.iter (renderTurn (w,h))
+
+    let survivors = (worlds |> Seq.last).Heads
+
+    match survivors.Length with
+    | 0 -> Console.Write("  !DRAW!  ")
+    | 1 -> Console.Write("<- WINNER!  ")
+    | _ -> ()
