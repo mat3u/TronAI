@@ -1,10 +1,12 @@
-﻿module ConsoleRenderer
+﻿module TronAI.ConsoleRenderer
 
 open System
-open Engine
+open TronAI.Engine
 
 let render (w, h) worlds =
-    let colors = [ConsoleColor.Red; ConsoleColor.Blue; ConsoleColor.Cyan; ConsoleColor.Yellow; ConsoleColor.Green; ConsoleColor.Magenta]
+    let colors = [ConsoleColor.Red; ConsoleColor.Blue; ConsoleColor.Cyan;
+                  ConsoleColor.Yellow; ConsoleColor.Green; ConsoleColor.Magenta;
+                  ConsoleColor.Gray; ConsoleColor.White; ConsoleColor.DarkYellow]
 
     let renderHead (player, (x, y)) =
         let org = Console.ForegroundColor

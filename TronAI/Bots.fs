@@ -1,6 +1,6 @@
-﻿module Bots
+﻿module TronAI.Bots
 
-open Engine
+open TronAI.Engine
 
 let kingOfTheNorth (_ : Player) (_: Position) (_: World) =
     North
@@ -46,3 +46,19 @@ let loony (_ : Player) ((x,y): Position) (world: World) =
     match valid.Length with
     | 0 -> North
     | n -> valid.[r.Next(n)]
+
+let clrBot assemblyName =
+    let botInterfaceType = typedefof<SDK.IBot>
+    let botAssembly = System.Reflection.Assembly.LoadFrom(assemblyName)
+    let botType = query {
+        for t in botAssembly.GetTypes() do
+        where (t.GetInterfaces() |> Seq.exists (fun i -> i = botInterfaceType))
+        last
+    }
+
+    let bot = System.Activator.CreateInstance(botType) :?> SDK.IBot
+
+    let result (me: Player) (pos: Position) (world: World) =
+        bot.OnTurn me pos world
+
+    result

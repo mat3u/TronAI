@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Engine.fs" />
     <Compile Include="ConsoleRenderer.fs" />
+    <Compile Include="SDK.fs" />
     <Compile Include="Bots.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />

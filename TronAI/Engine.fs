@@ -1,4 +1,4 @@
-﻿module Engine
+﻿module TronAI.Engine
 
 type Direction = | North | East | South | West
 type Position = int * int

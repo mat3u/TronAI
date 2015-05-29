@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TronAI", "TronAI\TronAI.fsproj", "{AA2F1621-D231-467F-AFA8-B22D4257A7ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TronAI.SampleCSBot", "TronAI.SampleCSBot\TronAI.SampleCSBot.csproj", "{9C6DA036-1991-4E04-A793-6FF2B15845B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AA2F1621-D231-467F-AFA8-B22D4257A7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA2F1621-D231-467F-AFA8-B22D4257A7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA2F1621-D231-467F-AFA8-B22D4257A7ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6DA036-1991-4E04-A793-6FF2B15845B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C6DA036-1991-4E04-A793-6FF2B15845B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C6DA036-1991-4E04-A793-6FF2B15845B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C6DA036-1991-4E04-A793-6FF2B15845B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
