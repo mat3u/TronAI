@@ -1,6 +1,7 @@
 ﻿module TronAI.Main
 
 open System
+open System.Threading
 open TronAI.Engine
 open TronAI.ConsoleRenderer
 open TronAI.Bots
@@ -8,10 +9,11 @@ open TronAI.Bots
 [<EntryPoint>]
 let main argv =
     let randomizer = new System.Random()
-    let size = (70, 35)
-    let bots = [wriggler; wrigglerL; loony;
-                loony; kingOfTheNorth;
-                (clrBot @"..\..\..\TronAI.SampleCSBot\bin\Debug\TronAI.SampleCSBot.dll")]
+    let size = (71  , 35)
+    let bots = [wriggler; wrigglerL;
+                loony; loony; kingOfTheNorth;
+                (clrBot @"..\..\..\TronAI.SampleCSBot\bin\Debug\TronAI.SampleCSBot.dll")
+                ]
                |> List.mapi (fun i b -> (i, b))
 
     let history = game randomizer size bots |> Seq.toList
@@ -20,8 +22,11 @@ let main argv =
         do history |> render size
     }
 
-    Async.Start(draw)
+    let cts = new CancellationTokenSource()
+
+    Async.Start(draw, cts.Token)
 
     Console.ReadKey() |> ignore
+    cts.Cancel() |> ignore
 
     0

@@ -54,13 +54,16 @@ let turn (bots: (Player * Bot) seq) (world: World) : World =
                          |> List.map (fun (player, bot, position_n) -> (player, bot player position_n world, position_n))
                          |> List.map (fun (player, direction, position_n) -> (player, moveHead position_n direction))
 
-    let potentialTakens = potentialMoves
-                          |> List.scan (fun taken (_, position) -> position :: taken) world.Taken
-                          |> skipLast
+    let potentialTaken = potentialMoves
+                         |> Seq.groupBy (fun (player, move) -> move)
+                         |> Seq.map (fun (k, v) -> (k, (Seq.toList v)))
+                         |> Seq.toList
+                         |> List.filter(fun (k, v) -> v |> Seq.length = 1)
+                         |> List.collect (fun (k,v) -> v)
 
-    let survivors = List.zip potentialMoves potentialTakens
-                    |> List.choose (fun ((player, position), taken) ->
-                        match (taken |> List.exists (fun c -> c = position)) with
+    let survivors = potentialMoves
+                    |> List.choose (fun (player, position) ->
+                        match (world.Taken |> List.exists (fun c -> c = position)) with
                         | false -> Some (player, position)
                         | _ -> None
                     ) |> Seq.toList
