@@ -52,6 +52,7 @@
     <Compile Include="ConsoleRenderer.fs" />
     <Compile Include="SDK.fs" />
     <Compile Include="Bots.fs" />
+    <Compile Include="Utils.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />

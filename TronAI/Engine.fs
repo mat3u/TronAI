@@ -72,9 +72,7 @@ let turn (bots: (Player * Bot) seq) (world: World) : World =
 
     {world with Taken = taken; Heads = survivors}
 
-let game (r: System.Random) (size: Size) (bots: (Player * Bot) seq) =
-    let initialWorld = initializeGame r size (bots |> Seq.map fst)
-
+let game initialWorld bots =
     let turn' = turn (bots |> Seq.toList)
 
     initialWorld
