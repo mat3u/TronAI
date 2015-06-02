@@ -5,7 +5,7 @@ type Position = int * int
 type Size = int * int
 
 type Player = int
-type World = { Taken : Position list; Heads : (Player * Position) list }
+type World = { Taken : Position list; Heads : (Player * Position) list; Size: Size }
 type Bot = Player -> Position -> World -> Direction
 
 let skipLast (list: 'a list) =
@@ -39,7 +39,7 @@ let initializeGame (r: System.Random) ((w,h): Size) (players: Player seq) =
         yield! heads |> Seq.map snd
     }) |> Seq.distinct)
 
-    {Taken = border; Heads = heads}
+    {Taken = border; Heads = heads; Size = (w,h)}
 
 let turn (bots: (Player * Bot) seq) (world: World) : World =
     let participants = query {
@@ -70,7 +70,7 @@ let turn (bots: (Player * Bot) seq) (world: World) : World =
 
     let taken = world.Taken |> Seq.append (survivors |> Seq.map snd) |> Seq.toList
 
-    {Taken = taken; Heads = survivors}
+    {world with Taken = taken; Heads = survivors}
 
 let game (r: System.Random) (size: Size) (bots: (Player * Bot) seq) =
     let initialWorld = initializeGame r size (bots |> Seq.map fst)
